@@ -1,0 +1,6 @@
+{
+  "name": "linkedin-api-examples",
+  "private": true,
+  "type": "module",
+  "description": "curl and TypeScript examples for the GTM API LinkedIn endpoints"
+}
