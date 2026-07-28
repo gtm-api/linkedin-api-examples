@@ -43,6 +43,17 @@ curl -X POST "https://app.gtm-api.com/linkedin/v4/api/linkedin-accounts/search" 
 | Enrich a profile from its vanity URL | [03-enrich-profile.sh](examples/curl/03-enrich-profile.sh) | [03-enrich-profile.ts](examples/typescript/03-enrich-profile.ts) |
 | Send a connection request with a note | [04-send-connection-request.sh](examples/curl/04-send-connection-request.sh) | [04-send-connection-request.ts](examples/typescript/04-send-connection-request.ts) |
 | Send a direct message | [05-send-message.sh](examples/curl/05-send-message.sh) | [05-send-message.ts](examples/typescript/05-send-message.ts) |
+| Run a search you built in the LinkedIn UI, by URL | [06-search-people-by-url.sh](examples/curl/06-search-people-by-url.sh) | [06-search-people-by-url.ts](examples/typescript/06-search-people-by-url.ts) |
+| Get emails, phones and socials off a profile | [07-get-contact-info.sh](examples/curl/07-get-contact-info.sh) | [07-get-contact-info.ts](examples/typescript/07-get-contact-info.ts) |
+| List a company's employees | [08-company-employees.sh](examples/curl/08-company-employees.sh) | [08-company-employees.ts](examples/typescript/08-company-employees.ts) |
+| Read the inbox and page through it | [09-read-inbox.sh](examples/curl/09-read-inbox.sh) | [09-read-inbox.ts](examples/typescript/09-read-inbox.ts) |
+| Mint a cloud-browser login link for an account | [10-cloud-browser-login-link.sh](examples/curl/10-cloud-browser-login-link.sh) | [10-cloud-browser-login-link.ts](examples/typescript/10-cloud-browser-login-link.ts) |
+| Bulk outreach: preview, then commit | [11-mass-action-preview-commit.sh](examples/curl/11-mass-action-preview-commit.sh) | [11-mass-action-preview-commit.ts](examples/typescript/11-mass-action-preview-commit.ts) |
+| Subscribe to events and verify signatures | [12-create-webhook.sh](examples/curl/12-create-webhook.sh) | [12-create-webhook.ts](examples/typescript/12-create-webhook.ts) |
+
+Examples 1 to 10 call the LinkedIn service at `https://app.gtm-api.com/linkedin/v4`. Mass
+actions and webhooks (11 and 12) are platform-wide, so they live on the orchestration service
+at `https://app.gtm-api.com/orchestration/v4`. Same key, same envelope.
 
 The curl scripts read `GTM_API_KEY` from the environment:
 
@@ -95,8 +106,11 @@ for conversations, `wh_hk_` for webhooks.
 - Search and enrichment can run through the platform executor pool (charged in credits), or
   through your own account when you pass `linkedin_account_sid`. Add an `idempotency_key` to
   any paid call to make retries free.
-- Bulk flows (invite 500 people from a search) are a first-class API with preview, commit
-  token and canary rollout: [run a mass action](https://docs.gtm-api.com/guides/run-a-mass-action).
+- Bulk flows never fire from one call: preview validates the plan and mints a 15-minute
+  `commit_token`, and the commit spends it. Details in
+  [run a mass action](https://docs.gtm-api.com/guides/run-a-mass-action).
+- Reads of already-synced data (accounts, conversations, messages) cost nothing and touch no
+  LinkedIn page. Search, enrichment and sends do reach LinkedIn through the account's browser.
 
 ## Use it from an AI agent
 

@@ -1,6 +1,11 @@
-// Minimal client for the GTM API LinkedIn endpoints. No dependencies:
-// Node 18+ ships fetch. Docs: https://docs.gtm-api.com
+// Minimal client for the GTM API. No dependencies: Node 18+ ships fetch.
+// Docs: https://docs.gtm-api.com
+//
+// Each service sits behind its own path on the gateway. LinkedIn endpoints
+// are the default here; mass actions and webhooks live on orchestration.
 const BASE = process.env.GTM_API_BASE ?? "https://app.gtm-api.com/linkedin/v4";
+const ORCHESTRATION_BASE =
+  process.env.GTM_ORCHESTRATION_BASE ?? "https://app.gtm-api.com/orchestration/v4";
 const KEY = process.env.GTM_API_KEY;
 
 export interface Envelope {
@@ -13,9 +18,10 @@ export interface Envelope {
 export async function gtm<T extends Envelope = Envelope>(
   path: string,
   body: Record<string, unknown> = {},
+  base: string = BASE,
 ): Promise<T> {
   if (!KEY) throw new Error("export GTM_API_KEY=gtm_live_YOUR_KEY first");
-  const res = await fetch(`${BASE}${path}`, {
+  const res = await fetch(`${base}${path}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${KEY}`,
@@ -29,4 +35,12 @@ export async function gtm<T extends Envelope = Envelope>(
     throw new Error(`${code}: ${json.error?.message ?? "request failed"}`);
   }
   return json;
+}
+
+// Same call, against the orchestration service (mass actions, webhooks).
+export function gtmOrchestration<T extends Envelope = Envelope>(
+  path: string,
+  body: Record<string, unknown> = {},
+): Promise<T> {
+  return gtm<T>(path, body, ORCHESTRATION_BASE);
 }
