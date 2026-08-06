@@ -3,7 +3,7 @@
 Runnable examples for the [GTM API](https://gtm-api.com) LinkedIn API: search people, enrich
 profiles, send connection requests and messages over plain HTTPS. Every connected LinkedIn
 account runs in its own anti-detect cloud browser with a dedicated proxy; GTM API reports
-20,000+ connected accounts at under 1% monthly ban rate.
+20,000+ connected accounts at under a 1% ban rate.
 
 Full reference and guides live at [docs.gtm-api.com](https://docs.gtm-api.com). For how the
 official, third-party and MCP options compare, read
