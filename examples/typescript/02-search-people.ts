@@ -4,7 +4,7 @@ import { gtm } from "./client.ts";
 
 const [keywords = "growth marketing", title] = process.argv.slice(2);
 
-const res = await gtm("/api/linkedin-scraping/search-people-by-params", {
+const res = await gtm("/api/linkedin-scraping/search-people", {
   filters: { keywords, title: title ?? null },
   // Reuse the same key when retrying: the ledger returns the stored outcome
   // instead of executing (and charging) again.

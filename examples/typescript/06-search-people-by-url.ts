@@ -8,7 +8,7 @@ const [url = "https://www.linkedin.com/search/results/people/?keywords=cto", pag
 
 // The URL must start with https://www.linkedin.com/search/results/people/
 // Anything else is refused with 422 invalid_search_url.
-const res = await gtm("/api/linkedin-scraping/search-people-by-url", {
+const res = await gtm("/api/linkedin-scraping/search-people", {
   url,
   page: Number(page),
   idempotency_key: `search-url-p${page}`,

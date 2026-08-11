@@ -14,7 +14,7 @@ IDEMPOTENCY_KEY="search-people-$(date +%s)"
 
 if [ -n "$TITLE" ]; then TITLE_JSON="\"$TITLE\""; else TITLE_JSON=null; fi
 
-curl -sS -X POST "$BASE/api/linkedin-scraping/search-people-by-params" \
+curl -sS -X POST "$BASE/api/linkedin-scraping/search-people" \
   -H "Authorization: Bearer $GTM_API_KEY" \
   -H "Content-Type: application/json" \
   -d "$(cat <<JSON
