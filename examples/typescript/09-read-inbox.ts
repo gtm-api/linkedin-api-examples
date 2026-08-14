@@ -1,5 +1,5 @@
 // Read the inbox and page through it with the cursor. These are local reads
-// of synced data: no credits, no LinkedIn page hit.
+// of synced data: no LinkedIn page hit.
 // Run: npx tsx examples/typescript/09-read-inbox.ts ln_ac_XXXXXXXXXXXX
 import { gtm } from "./client.ts";
 

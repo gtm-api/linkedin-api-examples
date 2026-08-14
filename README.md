@@ -103,9 +103,9 @@ for conversations, `wh_hk_` for webhooks.
   second connection request to someone with one already pending returns a 409 instead of
   burning the account. The platform side of staying safe:
   [Safe LinkedIn Automation](https://gtm-api.com/safe-linkedin-automation/).
-- Search and enrichment can run through the platform executor pool (charged in credits), or
-  through your own account when you pass `linkedin_account_sid`. Add an `idempotency_key` to
-  any paid call to make retries free.
+- Search and enrichment can run on our managed infrastructure, or through your own account
+  when you pass `linkedin_account_sid`. Add an `idempotency_key` to any call to make retries
+  safe.
 - Bulk flows never fire from one call: preview validates the plan and mints a 15-minute
   `commit_token`, and the commit spends it. Details in
   [run a mass action](https://docs.gtm-api.com/guides/run-a-mass-action).
