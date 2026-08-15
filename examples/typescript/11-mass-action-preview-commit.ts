@@ -41,7 +41,7 @@ interface PreviewEnvelope extends Envelope {
   result: {
     commit_token: string;
     expires_at: string;
-    preview: { items_count: number; credits_estimate: number; [key: string]: unknown };
+    preview: { items_count: number; steps_per_item: number; [key: string]: unknown };
   };
 }
 
