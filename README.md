@@ -11,8 +11,8 @@ official, third-party and MCP options compare, read
 
 ## Setup
 
-1. Sign up at [app.gtm-api.com](https://app.gtm-api.com/login) (7-day trial, no card) and
-   connect a LinkedIn account you own.
+1. Sign up at [app.gtm-api.com](https://app.gtm-api.com/login) and start on Sandbox, the
+   forever free plan (no card), then connect a LinkedIn account you own.
 2. Mint an API key in the app. The secret looks like `gtm_live_` plus 40 characters and is
    shown exactly once.
 3. Export it:
